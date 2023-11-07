@@ -1,0 +1,19 @@
+overwrite: true
+schema: 'http://localhost:81/query'
+documents: 'src/**/*.docs.graphql'
+generates:
+  src/generated/graphql.ts:
+    # preset: 'client'
+    plugins:
+      - typescript
+      - 'fragment-matcher'
+      - 'typescript-operations'
+      - 'typescript-urql'
+      - urql-introspection
+    config:
+      withComponent: false
+      withHooks: true
+      withHOC: false
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

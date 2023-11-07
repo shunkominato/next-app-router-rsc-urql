@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .mobile-hidden {
+    @apply hidden md:block;
+  }
+
+  .pc-hidden {
+    @apply md:hidden;
+  }
+}

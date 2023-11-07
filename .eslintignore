@@ -1,0 +1,8 @@
+*.js
+./storybook
+./node_modules
+./public
+.next
+next-env.d.ts
+tailwind.config.ts
+.src/generated/graphql.ts
