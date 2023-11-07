@@ -1,27 +1,32 @@
+import { IntrospectionQuery } from 'graphql';
 import gql from 'graphql-tag';
 import * as Urql from 'urql';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
+  [_ in K]?: never;
+};
+export type Incremental<T> =
+  | T
+  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   createTodo: Todo;
 };
-
 
 export type MutationCreateTodoArgs = {
   input: NewTodo;
@@ -51,187 +56,192 @@ export type User = {
   name: Scalars['String']['output'];
 };
 
-
-      export interface PossibleTypesResultData {
-        possibleTypes: {
-          [key: string]: string[]
-        }
-      }
-      const result: PossibleTypesResultData = {
-  "possibleTypes": {}
+export interface PossibleTypesResultData {
+  possibleTypes: {
+    [key: string]: string[];
+  };
+}
+const result: PossibleTypesResultData = {
+  possibleTypes: {},
 };
-      export default result;
-    
-export type TodoListQueryVariables = Exact<{ [key: string]: never; }>;
+export default result;
 
+export type TodoListQueryVariables = Exact<{ [key: string]: never }>;
 
-export type TodoListQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', text: string, done: boolean }> };
-
+export type TodoListQuery = {
+  __typename?: 'Query';
+  todos: Array<{ __typename?: 'Todo'; text: string; done: boolean }>;
+};
 
 export const TodoListDocument = gql`
-    query todoList {
-  todos {
-    text
-    done
+  query todoList {
+    todos {
+      text
+      done
+    }
   }
-}
-    `;
+`;
 
-export function useTodoListQuery(options?: Omit<Urql.UseQueryArgs<TodoListQueryVariables>, 'query'>) {
-  return Urql.useQuery<TodoListQuery, TodoListQueryVariables>({ query: TodoListDocument, ...options });
-};
-import { IntrospectionQuery } from 'graphql';
+export function useTodoListQuery(
+  options?: Omit<Urql.UseQueryArgs<TodoListQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<TodoListQuery, TodoListQueryVariables>({
+    query: TodoListDocument,
+    ...options,
+  });
+}
+
 export default {
-  "__schema": {
-    "queryType": {
-      "name": "Query"
+  __schema: {
+    queryType: {
+      name: 'Query',
     },
-    "mutationType": {
-      "name": "Mutation"
+    mutationType: {
+      name: 'Mutation',
     },
-    "subscriptionType": null,
-    "types": [
+    subscriptionType: null,
+    types: [
       {
-        "kind": "OBJECT",
-        "name": "Mutation",
-        "fields": [
+        kind: 'OBJECT',
+        name: 'Mutation',
+        fields: [
           {
-            "name": "createTodo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Todo",
-                "ofType": null
-              }
+            name: 'createTodo',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'OBJECT',
+                name: 'Todo',
+                ofType: null,
+              },
             },
-            "args": [
+            args: [
               {
-                "name": "input",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Any"
-                  }
-                }
-              }
-            ]
-          }
+                name: 'input',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
         ],
-        "interfaces": []
+        interfaces: [],
       },
       {
-        "kind": "OBJECT",
-        "name": "Query",
-        "fields": [
+        kind: 'OBJECT',
+        name: 'Query',
+        fields: [
           {
-            "name": "todos",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Todo",
-                    "ofType": null
-                  }
-                }
-              }
+            name: 'todos',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'LIST',
+                ofType: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'OBJECT',
+                    name: 'Todo',
+                    ofType: null,
+                  },
+                },
+              },
             },
-            "args": []
-          }
+            args: [],
+          },
         ],
-        "interfaces": []
+        interfaces: [],
       },
       {
-        "kind": "OBJECT",
-        "name": "Todo",
-        "fields": [
+        kind: 'OBJECT',
+        name: 'Todo',
+        fields: [
           {
-            "name": "done",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Any"
-              }
+            name: 'done',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
-            "args": []
+            args: [],
           },
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Any"
-              }
+            name: 'id',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
-            "args": []
+            args: [],
           },
           {
-            "name": "text",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Any"
-              }
+            name: 'text',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
-            "args": []
+            args: [],
           },
           {
-            "name": "user",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
+            name: 'user',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'OBJECT',
+                name: 'User',
+                ofType: null,
+              },
             },
-            "args": []
-          }
+            args: [],
+          },
         ],
-        "interfaces": []
+        interfaces: [],
       },
       {
-        "kind": "OBJECT",
-        "name": "User",
-        "fields": [
+        kind: 'OBJECT',
+        name: 'User',
+        fields: [
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Any"
-              }
+            name: 'id',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
-            "args": []
+            args: [],
           },
           {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Any"
-              }
+            name: 'name',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
-            "args": []
-          }
+            args: [],
+          },
         ],
-        "interfaces": []
+        interfaces: [],
       },
       {
-        "kind": "SCALAR",
-        "name": "Any"
-      }
+        kind: 'SCALAR',
+        name: 'Any',
+      },
     ],
-    "directives": []
-  }
+    directives: [],
+  },
 } as unknown as IntrospectionQuery;

@@ -1,8 +1,8 @@
 import { cacheExchange, createClient, fetchExchange, gql } from '@urql/core';
+import { registerUrql } from '@urql/next/rsc';
 import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
 import { Welcome } from '../components/Welcome/Welcome';
 import './globals.css';
-import { registerUrql } from '@urql/next/rsc';
 
 const makeClient = () => {
   return createClient({
