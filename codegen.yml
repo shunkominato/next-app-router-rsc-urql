@@ -6,14 +6,13 @@ generates:
     # preset: 'client'
     plugins:
       - typescript
-      - 'fragment-matcher'
-      - 'typescript-operations'
-      - 'typescript-urql'
-      - urql-introspection
+      - fragment-matcher
+      - typescript-operations
+      - typescript-urql
     config:
       withComponent: false
       withHooks: true
       withHOC: false
   ./graphql.schema.json:
     plugins:
-      - 'introspection'
+      - urql-introspection
