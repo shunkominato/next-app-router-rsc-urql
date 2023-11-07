@@ -10,7 +10,6 @@ module.exports = {
   importOrder: [
     '^(next/(.*)$)|^(next$)',
     '^(react/(.*)$)|^(react$)',
-    '<THIRD_PARTY_MODULES>',
     '^@/src/(.*)$',
     '^@/components/(.*)$',
     '^[./]',
