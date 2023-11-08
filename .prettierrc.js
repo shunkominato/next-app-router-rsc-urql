@@ -10,6 +10,7 @@ module.exports = {
   importOrder: [
     '^(next/(.*)$)|^(next$)',
     '^(react/(.*)$)|^(react$)',
+    '^(urql/(.*)$)|^(urql$)',
     '^@/src/(.*)$',
     '^@/components/(.*)$',
     '^[./]',

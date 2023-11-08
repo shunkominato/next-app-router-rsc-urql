@@ -1,12 +1,22 @@
-import { useTodoListQuery } from '@/src/generated/graphql';
+import { gql } from 'urql';
+import { TodoListDocument, TodoListQuery } from '@/src/generated/graphql';
+import { getClient } from '../../page';
+
+// export const TodoListDocumenta = gql`
+//   query todoList {
+//     todos {
+//       text
+//       done
+//     }
+//   }
+// `;
 
 export default async function TodoList() {
-  const [res] = useTodoListQuery();
-  const { data } = res;
+  const res = await getClient().query<TodoListQuery>(TodoListDocument, {});
 
   return (
     <div>
-      <ul>{data?.todos.map((todo, index) => <li key={index}>{todo.text}</li>)}</ul>
+      <ul>{res.data?.todos.map((todo, index) => <li key={index}>{todo.text}</li>)}</ul>
     </div>
   );
 }
