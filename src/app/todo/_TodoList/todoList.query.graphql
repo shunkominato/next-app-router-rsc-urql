@@ -1,0 +1,8 @@
+query todoList {
+  todos {
+    ...Todo
+    user {
+      ...User
+    }
+  }
+}

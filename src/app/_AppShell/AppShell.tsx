@@ -1,14 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { Flex, AppShell as MAppShell, useMantineTheme } from '@mantine/core';
+// import { cacheExchange, createClient, fetchExchange, ssrExchange, UrqlProvider } from '@urql/next';
+import { cacheExchange, Client, debugExchange, fetchExchange, Provider } from 'urql';
 import AppShellClass from './AppShell.module.css';
 import { MobileMenu } from './MobileMenu';
 
+// const client = new Client({
+//   url: 'http://127.0.0.1:81/query',
+//   exchanges: [cacheExchange, fetchExchange, debugExchange],
+// });
+
 export function AppShell({ children }: { children: ReactNode }) {
   const { shadows } = useMantineTheme();
+  // const [client, ssr] = useMemo(() => {
+  //   const ssr = ssrExchange();
+  //   const client = createClient({
+  //     url: 'http://localhost:81/query',
+  //     exchanges: [cacheExchange, ssr, fetchExchange],
+  //     suspense: true,
+  //   });
 
+  //   return [client, ssr];
+  // }, []);
   return (
     <MAppShell header={{ height: '64px' }} padding='md'>
       <MAppShell.Header style={{ boxShadow: shadows['sm'] }}>
@@ -31,7 +47,14 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </MAppShell.Header>
-      <MAppShell.Main className={AppShellClass.main}>{children}</MAppShell.Main>
+
+      <MAppShell.Main className={AppShellClass.main}>
+        {/* <UrqlProvider client={client} ssr={ssr}> */}
+        {/* <Provider value={client}> */}
+        {children}
+        {/* </UrqlProvider> */}
+        {/* </Provider> */}
+      </MAppShell.Main>
     </MAppShell>
   );
 }
