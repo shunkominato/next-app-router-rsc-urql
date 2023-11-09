@@ -1,8 +1,6 @@
 query todoList {
   todos {
-    ...Todo
-    user {
-      ...User
-    }
+    text
+    done
   }
 }

@@ -65,47 +65,20 @@ const result: PossibleTypesResultData = {
 };
 export default result;
 
-export type UserFragment = { __typename?: 'User'; id: string; name: string };
-
 export type TodoListQueryVariables = Exact<{ [key: string]: never }>;
 
 export type TodoListQuery = {
   __typename?: 'Query';
-  todos: Array<{
-    __typename?: 'Todo';
-    id: string;
-    text: string;
-    done: boolean;
-    user: { __typename?: 'User'; id: string; name: string };
-  }>;
+  todos: Array<{ __typename?: 'Todo'; text: string; done: boolean }>;
 };
 
-export type TodoFragment = { __typename?: 'Todo'; id: string; text: string; done: boolean };
-
-export const UserFragmentDoc = gql`
-  fragment User on User {
-    id
-    name
-  }
-`;
-export const TodoFragmentDoc = gql`
-  fragment Todo on Todo {
-    id
-    text
-    done
-  }
-`;
 export const TodoListDocument = gql`
   query todoList {
     todos {
-      ...Todo
-      user {
-        ...User
-      }
+      text
+      done
     }
   }
-  ${TodoFragmentDoc}
-  ${UserFragmentDoc}
 `;
 
 export function useTodoListQuery(
