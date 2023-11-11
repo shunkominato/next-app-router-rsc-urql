@@ -1,6 +1,7 @@
 import { TodoListDocument, TodoListQuery } from '@/src/graphql/__generated__/operations';
 // import { TodoListDocument, TodoListQuery } from '@/src/generated/graphql';
 import { getClient } from '../../page';
+import User from './User';
 
 export default async function TodoList() {
   // const TodoListDocument = gql`
@@ -20,6 +21,7 @@ export default async function TodoList() {
         {res.data?.todos.map((todo, index) => (
           <>
             <li key={index}>{todo.text}</li>
+            <User user={todo.user} />
           </>
         ))}
       </ul>

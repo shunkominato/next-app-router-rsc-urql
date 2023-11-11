@@ -1,5 +1,5 @@
-# fragment Todo on Todo {
-#   id
-#   text
-#   done
-# }
+fragment Todo on Todo {
+  id
+  text
+  done
+}
