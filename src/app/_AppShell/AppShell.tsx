@@ -8,10 +8,10 @@ import { cacheExchange, Client, debugExchange, fetchExchange, Provider } from 'u
 import AppShellClass from './AppShell.module.css';
 import { MobileMenu } from './MobileMenu';
 
-// const client = new Client({
-//   url: 'http://127.0.0.1:81/query',
-//   exchanges: [cacheExchange, fetchExchange, debugExchange],
-// });
+const client = new Client({
+  url: 'http://127.0.0.1:81/query',
+  exchanges: [cacheExchange, fetchExchange, debugExchange],
+});
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { shadows } = useMantineTheme();
@@ -50,10 +50,10 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <MAppShell.Main className={AppShellClass.main}>
         {/* <UrqlProvider client={client} ssr={ssr}> */}
-        {/* <Provider value={client}> */}
-        {children}
-        {/* </UrqlProvider> */}
-        {/* </Provider> */}
+        <Provider value={client}>
+          {children}
+          {/* </UrqlProvider> */}
+        </Provider>
       </MAppShell.Main>
     </MAppShell>
   );

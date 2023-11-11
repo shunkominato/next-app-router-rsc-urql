@@ -1,0 +1,9 @@
+query todoList {
+  todos {
+    text
+    done
+    user {
+      ...User
+    }
+  }
+}

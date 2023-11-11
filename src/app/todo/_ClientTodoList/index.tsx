@@ -1,9 +1,16 @@
+'use client';
+
+import { useState } from 'react';
+import { useTodoListQuery } from '@/src/graphql/__generated__/hooks';
 import { TodoListDocument, TodoListQuery } from '@/src/graphql/__generated__/operations';
 // import { TodoListDocument, TodoListQuery } from '@/src/generated/graphql';
 import { getClient } from '../../page';
 import User from './User';
 
-export default async function TodoList() {
+export default function ClientTodoList() {
+  const [res] = useTodoListQuery();
+  const { data } = res;
+
   // const TodoListDocument = gql`
   //   query todoList {
   //     todos {
@@ -12,7 +19,7 @@ export default async function TodoList() {
   //     }
   //   }
   // `;
-  const res = await getClient().query<TodoListQuery>(TodoListDocument, {});
+  // const res = await getClient().query<TodoListQuery>(TodoListDocument, {});
   // const [res] = useTodoListQuery();
 
   return (
