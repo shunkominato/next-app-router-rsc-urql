@@ -1,8 +1,8 @@
 'use client';
 
+import { Flex, AppShell as MAppShell, useMantineTheme } from '@mantine/core';
 import Image from 'next/image';
 import { ReactNode, useMemo } from 'react';
-import { Flex, AppShell as MAppShell, useMantineTheme } from '@mantine/core';
 // import { cacheExchange, createClient, fetchExchange, ssrExchange, UrqlProvider } from '@urql/next';
 import { cacheExchange, Client, debugExchange, fetchExchange, Provider } from 'urql';
 import AppShellClass from './AppShell.module.css';

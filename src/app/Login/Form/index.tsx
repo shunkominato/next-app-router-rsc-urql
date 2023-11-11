@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { Button, Center, Checkbox, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import Link from 'next/link';
 import { FormRow } from '@/src/components/ui/atoms/Form/FormRow';
 
 export function Form() {

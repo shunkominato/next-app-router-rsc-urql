@@ -1,5 +1,5 @@
-import { gql } from 'urql';
-import { TodoListDocument, TodoListQuery } from '@/src/generated/graphql';
+import { TodoListDocument, TodoListQuery } from '@/src/graphql/__generated__/operations';
+// import { TodoListDocument, TodoListQuery } from '@/src/generated/graphql';
 import { getClient } from '../../page';
 
 export default async function TodoList() {

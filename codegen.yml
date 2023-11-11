@@ -5,7 +5,8 @@ documents:
   - 'src/**/*.fragment.graphql'
 generates:
   src/generated/graphql.ts:
-    # preset: 'client'
+    documentTransforms:
+      - './my-document-transform.js'
     plugins:
       - typescript
       - fragment-matcher
@@ -13,7 +14,9 @@ generates:
       - typescript-urql
     config:
       withComponent: false
-      withHooks: true
+      hooks:
+        afterOneFileWrite:
+          - 'prettier --write'
       withHOC: false
   ./graphql.schema.json:
     plugins:

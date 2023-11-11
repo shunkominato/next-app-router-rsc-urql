@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
-import React, { ReactNode } from 'react';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import React, { ReactNode } from 'react';
 import { theme } from '../theme/theme';
 import { AppShell } from './_AppShell/AppShell';
 import './globals.css';
