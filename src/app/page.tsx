@@ -1,5 +1,6 @@
 import './globals.css';
 import { registerUrql } from '@urql/next/rsc';
+import Link from 'next/link';
 import { cacheExchange, createClient, fetchExchange } from 'urql';
 import Todo from './todo/page';
 
@@ -16,7 +17,9 @@ export const { getClient } = registerUrql(makeClient);
 export default function HomePage() {
   return (
     <>
-      <Todo />
+      <Link prefetch={true} href='todo'>
+        todo
+      </Link>
     </>
   );
 }
