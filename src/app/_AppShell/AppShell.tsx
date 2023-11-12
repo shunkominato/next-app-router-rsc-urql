@@ -1,19 +1,23 @@
 'use client';
 
 import { Flex, AppShell as MAppShell, useMantineTheme } from '@mantine/core';
+// import { cacheExchange, createClient, fetchExchange, ssrExchange, UrqlProvider } from '@urql/next';
+import { cacheExchange, Client, fetchExchange, ssrExchange } from '@urql/core';
 import Image from 'next/image';
 import { ReactNode, useMemo } from 'react';
-// import { cacheExchange, createClient, fetchExchange, ssrExchange, UrqlProvider } from '@urql/next';
-import { cacheExchange, Client, debugExchange, fetchExchange, Provider } from 'urql';
+import { Provider } from 'urql';
 import AppShellClass from './AppShell.module.css';
 import { MobileMenu } from './MobileMenu';
 
-const client = new Client({
-  url: 'http://127.0.0.1:81/query',
-  exchanges: [cacheExchange, fetchExchange, debugExchange],
-});
-
 export function AppShell({ children }: { children: ReactNode }) {
+  const isServerSide = typeof window === 'undefined';
+  const ssr = ssrExchange({
+    isClient: !isServerSide,
+  });
+  const client = new Client({
+    url: 'http://127.0.0.1:81/query',
+    exchanges: [cacheExchange, fetchExchange, ssr],
+  });
   const { shadows } = useMantineTheme();
   // const [client, ssr] = useMemo(() => {
   //   const ssr = ssrExchange();
